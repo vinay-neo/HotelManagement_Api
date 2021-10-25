@@ -1,0 +1,15 @@
+write fastapi queries for hms
+-- insert queries for Staff,Customer,Order,Payment,Shift
+-- view queries from db
+
+validate them
+
+create resolvers and mutations for it
+
+check graphql
+
+send it to docker
+--write the link to connect docker
+----DATABASE_URL
+--Configure docker-compose.yml
+

@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+
+  db:
+    container_name: my_sql
+    #pull mysql 8.0
+    image: mysql:8.0
+    restart: always
+    ports:
+      - 3306:3306
+    security_opt:
+      #ignore security options
+      - seccomp:unconfined
+    environment:
+      # to create for first time it needs to set roor password to initilize db
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DB=${DB_NAME}
+      #default user is root ignore
+      # - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+
+  app:
+    container_name: app
+    # Run the Dockerfile that is present in the local folder
+    build: .
+    # migrate the  tables and run the server with --reload
+    command: bash -c 'alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload'
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    restart: always
+    # to run after db
+    depends_on:
+      - db
+
+
+
+      

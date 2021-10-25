@@ -1,0 +1,44 @@
+https://www.freeprojectz.com/entity-relationship/hotel-management-system-er-diagram
+
+Order
+
+order_id int
+order_name varchar
+order_desc varchar
+order_price decimal
+staff_id
+cus_id
+
+
+Staff
+staff_id int
+name varchar 
+is_admin boolean
+login varchar
+password varchar
+
+
+
+Shift
+staff_id int
+shift_time date
+shift_name varchar
+
+
+Payment
+pay_id int
+cus_id int
+value decimal
+
+pay_time datetime
+
+
+
+Customer
+cus_id int
+name varchar
+birth_date date
+email varchar
+phone_number varchar
+
+
